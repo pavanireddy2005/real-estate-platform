@@ -79,6 +79,7 @@ function displayProperties(list) {
             <img
                 src="${property.image}"
                 alt="${property.title}"
+                loading="lazy"
             >
 
             <h3>${property.title}</h3>

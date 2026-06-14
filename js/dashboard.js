@@ -1,4 +1,14 @@
 // ===========================
+// Apply Theme First
+// ===========================
+
+if(localStorage.getItem("theme") === "dark"){
+
+    document.body.classList.add("dark-mode");
+
+}
+
+// ===========================
 // Authentication
 // ===========================
 
@@ -82,20 +92,28 @@ document.getElementById("dashboardProperties");
 propertyCount.textContent =
 properties.length;
 
+// ===========================
 // Total Value
+// ===========================
 
-let total = 0;
+function updateTotalValue(){
 
-properties.forEach(property => {
+    let total = 0;
 
-    total += Number(
-        property.price.replace(/[₹,]/g,"")
-    );
+    properties.forEach(property => {
 
-});
+        total += Number(
+            property.price.replace(/[₹,]/g,"")
+        );
 
-totalValue.textContent =
-"₹" + total.toLocaleString("en-IN");
+    });
+
+    totalValue.textContent =
+    "₹" + total.toLocaleString("en-IN");
+
+}
+
+updateTotalValue();
 
 // ===========================
 // Load Properties
@@ -116,15 +134,18 @@ function loadProperties(){
         return;
     }
 
+    let html = "";
+
     properties.forEach((property,index)=>{
 
-        container.innerHTML += `
+        html += `
 
         <div class="dashboard-card">
 
             <img
                 src="${property.image}"
                 alt="${property.title}"
+                loading="lazy"
             >
 
             <div>
@@ -154,6 +175,8 @@ function loadProperties(){
 
     });
 
+    container.innerHTML = html;
+
 }
 
 // ===========================
@@ -169,44 +192,27 @@ function deleteProperty(index){
         JSON.stringify(properties)
     );
 
-    loadProperties();
-
     propertyCount.textContent =
     properties.length;
 
-    let total = 0;
+    updateTotalValue();
 
-    properties.forEach(property => {
-
-        total += Number(
-            property.price.replace(/[₹,]/g,"")
-        );
-
-    });
-
-    totalValue.textContent =
-    "₹" + total.toLocaleString("en-IN");
+    loadProperties();
 
 }
 
 // ===========================
-// Dark Mode
+// Dark Mode Toggle
 // ===========================
 
 const darkModeBtn =
 document.getElementById("dark-mode-btn");
 
-if(localStorage.getItem("theme") === "dark"){
+if(darkModeBtn){
 
-    document.body.classList.add("dark-mode");
-
-    if(darkModeBtn){
+    if(document.body.classList.contains("dark-mode")){
         darkModeBtn.textContent = "☀️";
     }
-
-}
-
-if(darkModeBtn){
 
     darkModeBtn.addEventListener("click",()=>{
 
@@ -230,5 +236,9 @@ if(darkModeBtn){
     });
 
 }
+
+// ===========================
+// Init
+// ===========================
 
 loadProperties();
