@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup | Dream Homes</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <img src="../assets/images/logo.png" alt="Dream Homes Logo">
+            <span>Dream Homes</span>
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="properties.html">Properties</a>
+            </li>
+
+            <li>
+                <a href="contact.html">Contact</a>
+            </li>
+
+            <li>
+                <button id="dark-mode-btn">
+                    🌙
+                </button>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+<div class="auth-container">
+
+    <form
+        id="signupForm"
+        class="auth-form"
+    >
+
+        <h1>Create Account</h1>
+
+        <input
+            type="text"
+            id="signupName"
+            placeholder="Full Name"
+            required
+        >
+
+        <input
+            type="email"
+            id="signupEmail"
+            placeholder="Email"
+            required
+        >
+
+        <input
+            type="password"
+            id="signupPassword"
+            placeholder="Password"
+            required
+        >
+
+        <select id="role">
+
+            <option value="buyer">
+                Buyer
+            </option>
+
+            <option value="seller">
+                Seller
+            </option>
+
+        </select>
+
+        <!-- Message Area -->
+        <p id="authMessage"></p>
+
+        <button
+            type="submit"
+            class="btn"
+        >
+            Create Account
+        </button>
+
+        <p>
+            Already have an account?
+
+            <a href="login.html">
+                Login
+            </a>
+        </p>
+
+    </form>
+
+</div>
+
+<script src="../js/auth.js"></script>
+
+</body>
+</html>
